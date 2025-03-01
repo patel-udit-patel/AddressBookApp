@@ -3,6 +3,7 @@ package com.example.Address.Book.controller;
 import com.example.Address.Book.DTO.AddressBookDTO;
 import com.example.Address.Book.repository.AddressBookRepository;
 import com.example.Address.Book.model.AddressBookEntry;
+import com.example.Address.Book.services.AddressBookServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +64,8 @@ public class AddressBookController {
          repository.delete(data);
          return data;
     }
+
+
     //UC01_section02
 
     @GetMapping("/all")
@@ -106,6 +109,36 @@ public class AddressBookController {
         AddressBookEntry data=repository.findById(id).orElseThrow(() -> new RuntimeException("Entry not found"));
         repository.delete(data);
         return ResponseEntity.ok(data);
+    }
+
+    //UC02_section02
+    @Autowired
+    AddressBookServices services;
+
+    @GetMapping("/api/services/all")
+    public List<AddressBookEntry>getAllInfoServices(){
+        return services.getAllInfo();
+    }
+
+    @GetMapping("/api/services/{id}")
+    public AddressBookEntry getInfoByIdServices(@PathVariable Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Entry not found"));
+    }
+
+    @PostMapping("/api/services")
+    public AddressBookEntry addInfoServices(@RequestBody AddressBookDTO dataDTO){
+        return services.addInfo(dataDTO);
+    }
+
+    @PutMapping("/api/services/{id}")
+    public AddressBookEntry updateInfoServices(@PathVariable Long id,@RequestBody AddressBookEntry dataDTO){
+        return services.updateInfo(id,dataDTO);
+
+    }
+
+    @DeleteMapping("/api/services/{id}")
+    public AddressBookEntry deleteInfoServices(@PathVariable Long id){
+        return services.deleteInfo(id);
     }
 
 
