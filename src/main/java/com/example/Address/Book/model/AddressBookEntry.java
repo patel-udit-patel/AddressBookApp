@@ -18,42 +18,73 @@ public class AddressBookEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
+    private String fullName;
+    private String address;
+    private String city;
+    private String state;
+    private String zipCode;
     private String contact;
 
     public AddressBookEntry(){}
-    public AddressBookEntry(String name,String email,String contact){
-        this.name=name;
-        this.email=email;
+    public AddressBookEntry(String fullName,String address,String city,String state,String zipCode,String contact){
+        this.fullName=fullName;
+        this.address=address;
+        this.city=city;
+        this.state=state;
+        this.zipCode=zipCode;
         this.contact=contact;
     }
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
     public String getContact() {
         return contact;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCity() {
+        return city;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getState(){
+        return state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public void setContact(String contact) {

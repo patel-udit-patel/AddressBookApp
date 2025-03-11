@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin //It's important don't remove ok :)
+
 @RequestMapping("/")
 public class AddressBookController {
 
@@ -36,9 +38,12 @@ public class AddressBookController {
     @PostMapping("/api")
     public AddressBookEntry addInfo(@RequestBody AddressBookDTO dataDTO){
         AddressBookEntry data = new AddressBookEntry();
-        data.setName(dataDTO.getName());
+        data.setFullName(dataDTO.getFullName());
         data.setContact(dataDTO.getContact());
-        data.setEmail(dataDTO.getEmail());
+        data.setAddress(dataDTO.getAddress());
+        data.setCity(dataDTO.getCity());
+        data.setState(dataDTO.getState());
+        data.setZipCode(dataDTO.getZipCode());
 
         repository.save(data);
 
@@ -48,11 +53,13 @@ public class AddressBookController {
     @PutMapping("/api/{id}")
     public AddressBookEntry updateInfo(@PathVariable Long id,@RequestBody AddressBookEntry dataDTO){
         AddressBookEntry data = new AddressBookEntry();
-        data.setId(id);
-        data.setName(dataDTO.getName());
+//        data.setId(id);
+        data.setFullName(dataDTO.getFullName());
         data.setContact(dataDTO.getContact());
-        data.setEmail(dataDTO.getEmail());
-
+        data.setAddress(dataDTO.getAddress());
+        data.setCity(dataDTO.getCity());
+        data.setState(dataDTO.getState());
+        data.setZipCode(dataDTO.getZipCode());
         repository.save(data);
         return data;
     }
@@ -80,9 +87,12 @@ public class AddressBookController {
     @PostMapping
     public ResponseEntity<AddressBookEntry> addInfoResponse(@RequestBody AddressBookDTO dataDTO){
         AddressBookEntry data = new AddressBookEntry();
-        data.setName(dataDTO.getName());
+        data.setFullName(dataDTO.getFullName());
         data.setContact(dataDTO.getContact());
-        data.setEmail(dataDTO.getEmail());
+        data.setAddress(dataDTO.getAddress());
+        data.setCity(dataDTO.getCity());
+        data.setState(dataDTO.getState());
+        data.setZipCode(dataDTO.getZipCode());
 
         repository.save(data);
 
@@ -93,9 +103,12 @@ public class AddressBookController {
     public ResponseEntity<AddressBookEntry> updateInfoResponse(@PathVariable Long id,@RequestBody AddressBookEntry dataDTO){
         AddressBookEntry data = new AddressBookEntry();
         data.setId(id);
-        data.setName(dataDTO.getName());
+        data.setFullName(dataDTO.getFullName());
         data.setContact(dataDTO.getContact());
-        data.setEmail(dataDTO.getEmail());
+        data.setAddress(dataDTO.getAddress());
+        data.setCity(dataDTO.getCity());
+        data.setState(dataDTO.getState());
+        data.setZipCode(dataDTO.getZipCode());
 
         repository.save(data);
         return ResponseEntity.ok(data);
